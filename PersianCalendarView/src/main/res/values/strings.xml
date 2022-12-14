@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_day_abb">ش</string>
+    <string name="second_day_abb">ی</string>
+    <string name="third_day_abb">د</string>
+    <string name="fourth_day_abb">س</string>
+    <string name="fifth_day_abb">چ</string>
+    <string name="sixth_day_abb">پ</string>
+    <string name="seventh_day_abb">ج</string>
+    <string name="month_title">%1$s %2$s</string>
+    <string name="am">AM</string>
+    <string name="pm">PM</string>
+    <string name="am_name">AM</string>
+    <string name="pm_name">PM</string>
+</resources>

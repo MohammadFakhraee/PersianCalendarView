@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PersianCalendarView">
+        <attr name="rectPadding" format="dimension" />
+        <attr name="rectCornerRadius" format="dimension" />
+        <attr name="daysTextSize" format="dimension" />
+        <attr name="highlightDayColor" format="color" />
+        <attr name="onHighlightDayColor" format="color" />
+        <attr name="dayOfMonthColor" format="color" />
+        <attr name="dayOutOfMonthColor" format="color" />
+    </declare-styleable>
+</resources>
