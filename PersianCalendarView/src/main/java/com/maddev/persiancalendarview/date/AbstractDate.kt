@@ -1,8 +1,6 @@
 package com.maddev.persiancalendarview.date
 
 import com.maddev.persiancalendarview.R
-import com.maddev.persiancalendarview.persiandate.PersianHelper
-import com.maddev.persiancalendarview.utils.formatDay
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*

@@ -7,7 +7,7 @@ import com.maddev.persiancalendarview.date.DateType
 import com.maddev.persiancalendarview.date.GregorianDate
 import com.maddev.persiancalendarview.date.PersianDate
 import com.maddev.persiancalendarview.day.SharedDayViewStyle
-import com.maddev.persiancalendarview.persiandate.PersianHelper
+import com.maddev.persiancalendarview.utils.PersianHelper
 import com.maddev.persiancalendarview.utils.dp
 import com.maddev.persiancalendarview.utils.reInit
 import com.maddev.persiancalendarview.utils.resolveColor

@@ -10,7 +10,6 @@ import androidx.annotation.FontRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.maddev.persiancalendarview.date.AbstractDate
-import com.maddev.persiancalendarview.persiandate.PersianHelper
 
 val Number.dp: Float get() = this.toFloat() * Resources.getSystem().displayMetrics.density
 val Number.sp: Float get() = this.toFloat() * Resources.getSystem().displayMetrics.scaledDensity
