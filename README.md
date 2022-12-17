@@ -88,6 +88,11 @@ All of the xml attributes can be changed with kotlin codes.
                 dayOfMonth = Color.BLACK,
                 dayOutOfMonth = Color.GRAY
             )
+            // Set a date as selected. Will select today if this method is not called
+            selectDate(
+                timeInMilliSecond = desiredDateInMilliSecond,
+                animation = true
+            )
         }
 ```
 **CAUTION!** be careful to support dark/light theme when changing default colors.
