@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<PersianCalendarView>(R.id.shamsiView).apply {
             setDateType(DateType.PERSIAN)
+            val timeInMilli = 2_592_000_000
+            selectDate(System.currentTimeMillis() + timeInMilli, true)
         }
 
         findViewById<PersianCalendarView>(R.id.gregorianView).apply {

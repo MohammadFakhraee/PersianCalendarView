@@ -9,6 +9,7 @@ import com.maddev.persiancalendarview.databinding.ItemCalendarBinding
 import com.maddev.persiancalendarview.date.AbstractDate
 import com.maddev.persiancalendarview.month.SharedMonthViewData
 import com.maddev.persiancalendarview.utils.formatYear
+import java.time.ZoneOffset
 
 class MonthsAdapter(
     private val sharedMonthViewData: SharedMonthViewData
@@ -23,7 +24,7 @@ class MonthsAdapter(
     )
 
     override fun onBindViewHolder(holder: MonthsViewHolder, position: Int) {
-        val offset = position - middlePosition()
+        val offset = offsetFromMiddle(position)
         val currentShownMonth = sharedMonthViewData.getMonthStartDateFromOffset(offset)
         val previousShownMonth = sharedMonthViewData.previousMonth(currentShownMonth)
         holder.onBind(currentShownMonth, previousShownMonth)
@@ -32,6 +33,10 @@ class MonthsAdapter(
     override fun getItemCount(): Int = Int.MAX_VALUE
 
     fun middlePosition(): Int = itemCount / 2
+
+    fun positionFromOffset(offset: Int) = middlePosition() + offset
+
+    fun offsetFromMiddle(position: Int) = position - middlePosition()
 
     inner class MonthsViewHolder(private val binding: ItemCalendarBinding) : ViewHolder(binding.root) {
 

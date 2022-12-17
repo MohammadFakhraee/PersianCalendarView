@@ -145,7 +145,14 @@ class PersianCalendarView(context: Context, attrs: AttributeSet? = null) : Recyc
     }
 
     fun setDateType(dateType: DateType) {
-        sharedMonthViewData.changeLocale(dateType)
+        sharedMonthViewData.changeDateType(dateType)
+        validation()
+    }
+
+    fun selectDate(timeInMilliSecond: Long, animation: Boolean) {
+        sharedMonthViewData.setSelectedDay(timeInMilliSecond)
+        val position = monthsAdapter.positionFromOffset(sharedMonthViewData.getOffsetFromCurrentDate())
+        if (animation) smoothScrollToPosition(position) else scrollToPosition(position)
         validation()
     }
 

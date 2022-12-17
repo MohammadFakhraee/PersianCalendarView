@@ -297,9 +297,17 @@ abstract class AbstractDate {
     }
 
     /**
+     * calculates months until the given date.
+     * @return zero if current year and month are the same as the given one,
+     * negative if [before] returns true and positive if [after] returns true
+     */
+    fun monthsUntilDate(date: AbstractDate): Int =
+        (this.year - date.year ) * monthLengthListLeap.size + (this.month - date.month)
+
+    /**
      * convert AbstractDate class to date
      */
-    open fun toDate(): Date {
+    fun toDate(): Date {
         return Date(timeInMilliSecond)
     }
 

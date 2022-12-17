@@ -38,7 +38,11 @@ class SharedMonthViewData(context: Context) {
     fun isToday(year: Int, monthOfYear: Int, dayOfMonthNumber: Int) = todayYear == year && todayMonth == monthOfYear && todayDay == dayOfMonthNumber
 
     fun setSelectedDay(selectedDate: AbstractDate) {
-        this.selectedDate.init(selectedDate.timeInMilliSecond)
+        setSelectedDay(selectedDate.timeInMilliSecond)
+    }
+
+    fun setSelectedDay(timeInMilliSecond: Long) {
+        this.selectedDate.init(timeInMilliSecond)
     }
 
     fun setSelectedDay(year: Int, monthOfYear: Int, dayOfMonthNumber: Int) {
@@ -53,14 +57,33 @@ class SharedMonthViewData(context: Context) {
         selectedYear == year && selectedMonth == monthOfYear && selectedDay == dayOfMonthNumber
 
     fun getMonthStartDateFromOffset(offset: Int): AbstractDate {
-        return when {
-            offset == 0 -> todayDateInstance()
-            offset > 0 -> todayDateInstance().addMonths(offset)
-            else -> todayDateInstance().subMonths(abs(offset))
-        }.also { it.day = 1 }
+        return getDateFromOffset(offset).also { it.day = 1 }
     }
 
-    fun changeLocale(dateType: DateType) {
+    private fun getDateFromOffset(offset: Int): AbstractDate = when {
+        offset == 0 -> todayDateInstance()
+        offset > 0 -> todayDateInstance().addMonths(offset)
+        else -> todayDateInstance().subMonths(abs(offset))
+    }
+
+    /**
+     * different months between current selected date and today date
+     * @return Int: zero if both date have same year and month,
+     * negative if current date is before today
+     * and positive if current date is after today
+     */
+    fun getOffsetFromCurrentDate(): Int = getOffsetFromDate(selectedDate)
+
+    /**
+     * different months between [abstractDate] date and today date
+     * @param abstractDate to get month offset
+     * @return Int: zero if both date have same year and month,
+     * negative if given date is before today
+     * and positive if given date is after today
+     */
+    private fun getOffsetFromDate(abstractDate: AbstractDate): Int = abstractDate.monthsUntilDate(todayDate)
+
+    fun changeDateType(dateType: DateType) {
         this.dateType = dateType
         initDays()
     }
@@ -79,11 +102,10 @@ class SharedMonthViewData(context: Context) {
 
     fun previousMonth(abstractDate: AbstractDate): AbstractDate = todayDateInstance().reInit(abstractDate.timeInMilliSecond).subMonths(1)
 
-    fun formatNumber(number: String): String =
-        when (dateType) {
-            DateType.PERSIAN -> PersianHelper.toPersianNumber(number)
-            DateType.GREGORIAN -> PersianHelper.toEnglishNumber(number)
-        }
+    fun formatNumber(number: String): String = when (dateType) {
+        DateType.PERSIAN -> PersianHelper.toPersianNumber(number)
+        DateType.GREGORIAN -> PersianHelper.toEnglishNumber(number)
+    }
 
     companion object {
 
