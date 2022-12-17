@@ -33,6 +33,7 @@ class SharedMonthViewData(context: Context) {
     val selectedDay: Int get() = selectedDate.day
 
     val monthTitleColor = context.resolveColor(R.color.colorOnSecondary)
+    val arrowTintColor = context.resolveColor(R.color.colorOnSecondary)
 
     fun isToday(year: Int, monthOfYear: Int, dayOfMonthNumber: Int) = todayYear == year && todayMonth == monthOfYear && todayDay == dayOfMonthNumber
 

@@ -60,6 +60,8 @@ class MonthsAdapter(
 
         fun onBind(currentMonth: AbstractDate, previousMonth: AbstractDate) {
             this.currentDate = currentMonth
+            binding.arrowNext.setColorFilter(sharedMonthViewData.arrowTintColor)
+            binding.arrowPrevious.setColorFilter(sharedMonthViewData.arrowTintColor)
             binding.monthName.setTextColor(sharedMonthViewData.monthTitleColor)
             binding.monthName.text = binding.monthView.context
                 .getString(R.string.month_title, currentMonth.getMonthName(), sharedMonthViewData.formatNumber(currentMonth.year.formatYear()))

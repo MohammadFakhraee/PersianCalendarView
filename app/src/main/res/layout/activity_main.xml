@@ -7,9 +7,18 @@
     tools:context=".MainActivity">
 
     <com.maddev.persiancalendarview.calendar.PersianCalendarView
+        android:id="@+id/shamsiView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.maddev.persiancalendarview.calendar.PersianCalendarView
+        android:id="@+id/gregorianView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shamsiView"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
