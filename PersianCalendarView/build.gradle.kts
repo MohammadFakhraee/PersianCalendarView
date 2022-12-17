@@ -32,24 +32,21 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
 }
 
 dependencies {
     implementation("com.google.android.material:material:1.7.0")
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "com.github.MohammadFakhraee"
-            artifactId = "PersianCalendarView"
-            version = "1.0.0"
+afterEvaluate {
+    publishing {
+        publications {
+            register<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.github.MohammadFakhraee"
+                artifactId = "PersianCalendarView"
+                version = "1.0.0"
+            }
         }
     }
 }
