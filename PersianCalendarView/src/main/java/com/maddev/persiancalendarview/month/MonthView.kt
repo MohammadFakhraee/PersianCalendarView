@@ -39,14 +39,14 @@ class MonthView(context: Context, attrs: AttributeSet? = null) : RecyclerView(co
         })
     }
 
-    fun submitData(currentMonth: AbstractDate, previousMonth: AbstractDate) {
-        monthName = currentMonth.getMonthName()
+    fun submitData(currentMonth: AbstractDate, previousMonth: AbstractDate, firstDayOfWeek: AbstractDate.DayOfWeek?) {
+        monthName = context.getString(currentMonth.getMonthName())
         daysOfMonthAdapter?.let {
-            it.dayOfWeekNames = currentMonth.dayOfWeekNames
             it.year = currentMonth.year
             it.monthOfYear = currentMonth.month
             it.monthLength = currentMonth.monthLength
-            it.monthStartOffset = currentMonth.dayOfWeek // returns the index of day in week (not the number of day in week)
+            // returns the index of day in week (not the number of day in week)
+            it.monthStartOffset = if (firstDayOfWeek != null) currentMonth.dayOfWeek(firstDayOfWeek = firstDayOfWeek) else currentMonth.dayOfWeek
             it.prevMonthLength = previousMonth.monthLength
             it.checkSelectedDayOfMonth()
             it.notifyItemRangeChanged(0, it.itemCount)

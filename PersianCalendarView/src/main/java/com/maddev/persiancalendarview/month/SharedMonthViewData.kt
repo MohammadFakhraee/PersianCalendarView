@@ -11,6 +11,7 @@ import com.maddev.persiancalendarview.utils.PersianHelper
 import com.maddev.persiancalendarview.utils.dp
 import com.maddev.persiancalendarview.utils.reInit
 import com.maddev.persiancalendarview.utils.resolveColor
+import java.util.Locale
 import kotlin.math.abs
 
 class SharedMonthViewData(context: Context) {
@@ -21,6 +22,7 @@ class SharedMonthViewData(context: Context) {
     val cellSpaceDirection: MonthView.SpaceDirection = MonthView.SpaceDirection.HORIZONTAL_SPACE
 
     var dateType: DateType = DateType.PERSIAN
+    var firstDayOfWeek: AbstractDate.DayOfWeek? = null
 
     private var todayDate: AbstractDate = todayDateInstance()
     private val todayYear: Int get() = todayDate.year
@@ -66,6 +68,11 @@ class SharedMonthViewData(context: Context) {
         else -> todayDateInstance().subMonths(abs(offset))
     }
 
+    fun getDayOfWeekTitle(index: Int): Int {
+        val firstDayOfWeekIndex = firstDayOfWeek?.position ?: todayDate.firstDayOfWeek.position
+        return AbstractDate.dayOfWeekNames[(index + firstDayOfWeekIndex) % 7]
+    }
+
     /**
      * different months between current selected date and today date
      * @return Int: zero if both date have same year and month,
@@ -102,12 +109,8 @@ class SharedMonthViewData(context: Context) {
 
     fun previousMonth(abstractDate: AbstractDate): AbstractDate = todayDateInstance().reInit(abstractDate.timeInMilliSecond).subMonths(1)
 
-    fun formatNumber(number: String): String = when (dateType) {
-        DateType.PERSIAN -> PersianHelper.toPersianNumber(number)
-        DateType.GREGORIAN -> PersianHelper.toEnglishNumber(number)
-    }
-
-    companion object {
-
+    fun formatNumber(number: String): String = when {
+        Locale.getDefault().language.contains("fa") -> PersianHelper.toPersianNumber(number)
+        else -> PersianHelper.toEnglishNumber(number)
     }
 }

@@ -156,6 +156,11 @@ class PersianCalendarView(context: Context, attrs: AttributeSet? = null) : Recyc
         monthsAdapter.notifyItemChanged(position)
     }
 
+    fun setFirstDayOfWeek(firstDayOfWeek: Int) {
+        sharedMonthViewData.firstDayOfWeek = AbstractDate.getDayOfWeek(firstDayOfWeek)
+        validation()
+    }
+
     private fun validation() {
         invalidate()
         requestLayout()

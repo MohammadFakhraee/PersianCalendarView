@@ -93,6 +93,8 @@ All of the xml attributes can be changed with kotlin codes.
                 timeInMilliSecond = desiredDateInMilliSecond,
                 animation = true
             )
+            // Set first day of week manually
+            setFirstDayOfWeek(AbstractDate.DayOfWeek.SUNDAY.position)
         }
 ```
 **CAUTION!** be careful to support dark/light theme when changing default colors.

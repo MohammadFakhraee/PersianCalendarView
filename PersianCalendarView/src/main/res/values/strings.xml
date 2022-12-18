@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="first_day_abb">ش</string>
-    <string name="second_day_abb">ی</string>
-    <string name="third_day_abb">د</string>
-    <string name="fourth_day_abb">س</string>
-    <string name="fifth_day_abb">چ</string>
-    <string name="sixth_day_abb">پ</string>
-    <string name="seventh_day_abb">ج</string>
-    <string name="month_title">%1$s %2$s</string>
+    // days of week
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    // months in shamsi
+    <string name="farvardin">Farvardin</string>
+    <string name="ordibehesht">Ordibehesht</string>
+    <string name="khordad">Khordad</string>
+    <string name="tir">Tir</string>
+    <string name="mordad">Mordad</string>
+    <string name="shahrivar">Shahrivar</string>
+    <string name="mehr">Mehr</string>
+    <string name="aban">Aban</string>
+    <string name="azar">Azar</string>
+    <string name="dey">Dey</string>
+    <string name="bahman">Bahman</string>
+    <string name="esfand">Esfand</string>
+    // months in gregorian
+    <string name="january">January</string>
+    <string name="february">February</string>
+    <string name="march">March</string>
+    <string name="april">April</string>
+    <string name="may">May</string>
+    <string name="june">June</string>
+    <string name="july">July</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="october">October</string>
+    <string name="november">November</string>
+    <string name="december">December</string>
+
+    <string name="month_title" translatable="false">%1$s %2$s</string>
+
     <string name="am">AM</string>
     <string name="pm">PM</string>
     <string name="am_name">AM</string>

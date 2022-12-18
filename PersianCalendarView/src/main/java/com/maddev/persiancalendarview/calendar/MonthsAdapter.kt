@@ -9,7 +9,6 @@ import com.maddev.persiancalendarview.databinding.ItemCalendarBinding
 import com.maddev.persiancalendarview.date.AbstractDate
 import com.maddev.persiancalendarview.month.SharedMonthViewData
 import com.maddev.persiancalendarview.utils.formatYear
-import java.time.ZoneOffset
 
 class MonthsAdapter(
     private val sharedMonthViewData: SharedMonthViewData
@@ -65,12 +64,17 @@ class MonthsAdapter(
 
         fun onBind(currentMonth: AbstractDate, previousMonth: AbstractDate) {
             this.currentDate = currentMonth
-            binding.arrowNext.setColorFilter(sharedMonthViewData.arrowTintColor)
-            binding.arrowPrevious.setColorFilter(sharedMonthViewData.arrowTintColor)
-            binding.monthName.setTextColor(sharedMonthViewData.monthTitleColor)
-            binding.monthName.text = binding.monthView.context
-                .getString(R.string.month_title, currentMonth.getMonthName(), sharedMonthViewData.formatNumber(currentMonth.year.formatYear()))
-            binding.monthView.submitData(currentMonth, previousMonth)
+            binding.run {
+                arrowNext.setColorFilter(sharedMonthViewData.arrowTintColor)
+                arrowPrevious.setColorFilter(sharedMonthViewData.arrowTintColor)
+                monthName.setTextColor(sharedMonthViewData.monthTitleColor)
+                monthName.text = monthView.context.getString(
+                    R.string.month_title,
+                    monthView.context.getString(currentMonth.getMonthName()),
+                    sharedMonthViewData.formatNumber(currentMonth.year.formatYear())
+                )
+                monthView.submitData(currentMonth, previousMonth, sharedMonthViewData.firstDayOfWeek)
+            }
         }
     }
 

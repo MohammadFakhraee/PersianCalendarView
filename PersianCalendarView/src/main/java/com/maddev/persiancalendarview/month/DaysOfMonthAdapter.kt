@@ -9,8 +9,6 @@ class DaysOfMonthAdapter(
     private val sharedMonthViewData: SharedMonthViewData
 ) : Adapter<DaysOfMonthAdapter.DayOfMonthViewHolder>() {
 
-    var dayOfWeekNames: Array<String> = arrayOf()
-
     var year: Int = DEF_DATE_NUMBER
     var monthStartOffset: Int = DEF_DATE_NUMBER
     var monthOfYear: Int = DEF_DATE_NUMBER
@@ -20,13 +18,10 @@ class DaysOfMonthAdapter(
 
     private var onDayViewClickListener: ((dayOfMonth: Int) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayOfMonthViewHolder =
-        DayOfMonthViewHolder(
-            DayView(parent.context).also {
-                it.layoutParams = sharedMonthViewData.sharedDayViewStyle.layoutParams
-                it.dayViewAppearance = sharedMonthViewData.sharedDayViewStyle
-            }
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayOfMonthViewHolder = DayOfMonthViewHolder(DayView(parent.context).also {
+        it.layoutParams = sharedMonthViewData.sharedDayViewStyle.layoutParams
+        it.dayViewAppearance = sharedMonthViewData.sharedDayViewStyle
+    })
 
     override fun onBindViewHolder(holder: DayOfMonthViewHolder, position: Int) = holder.onBind()
 
@@ -34,8 +29,7 @@ class DaysOfMonthAdapter(
 
     private fun isToday(dayOfMonthNumber: Int): Boolean = sharedMonthViewData.isToday(year, monthOfYear, dayOfMonthNumber)
 
-    private fun isSelected(dayOfMonthNumber: Int): Boolean =
-        sharedMonthViewData.isDaySelected(year, monthOfYear, dayOfMonthNumber)
+    private fun isSelected(dayOfMonthNumber: Int): Boolean = sharedMonthViewData.isDaySelected(year, monthOfYear, dayOfMonthNumber)
 
     fun setOnDayViewClickListener(onDayViewClickListener: ((dayOfMonth: Int) -> Unit)?) {
         this.onDayViewClickListener = onDayViewClickListener
@@ -64,7 +58,7 @@ class DaysOfMonthAdapter(
             // todo: check gregorian's day of week response and change below logic if needed
             when (position) {
                 in 0..6 /* index of day of week */ -> {
-                    dayView.setAsWeek(dayOfWeekNames[position])
+                    dayView.setAsWeek(dayView.context.getString(sharedMonthViewData.getDayOfWeekTitle(position)))
                 }
                 in 6..(6 + monthStartOffset) /* index views before starting month numbers */ -> {
                     val columnNumber = position - 6
@@ -76,9 +70,7 @@ class DaysOfMonthAdapter(
                     val isToday = isToday(dayOfMonth)
                     val isSelected = isSelected(dayOfMonth)
                     dayView.setDayOfMonth(
-                        dayOfMonth = dayOfMonth,
-                        isToday = isToday,
-                        isDaySelected = isSelected
+                        dayOfMonth = dayOfMonth, isToday = isToday, isDaySelected = isSelected
                     )
 
                     dayView.setOnClickListener {

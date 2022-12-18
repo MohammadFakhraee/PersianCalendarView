@@ -1,5 +1,6 @@
 package com.maddev.persiancalendarview.date
 
+import com.maddev.persiancalendarview.R
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.ceil
@@ -15,21 +16,8 @@ class PersianDate : AbstractDate {
 
     override val monthLengthListNotLeap: Array<Int> get() = monthLengthNotLeap
     override val monthLengthListLeap: Array<Int> get() = monthLengthLeap
-    override val monthNames: Array<String> get() = PersianDate.monthNames
-    override val dayOfWeekNames: Array<String> get() = dayNames
-
-    /**
-     * Get day of week from Date object
-     *
-     * @param date Date
-     * @return int
-     */
-    override fun dayOfWeek(date: Date): Int {
-        val cal = Calendar.getInstance()
-        cal.time = date
-        if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) return 0
-        return cal.get(Calendar.DAY_OF_WEEK)
-    }
+    override val monthNames: Array<Int> get() = PersianDate.monthNames
+    override val firstDayOfWeek get() = DayOfWeek.SATURDAY
 
     /**
      * Check custom year is leap
@@ -59,8 +47,7 @@ class PersianDate : AbstractDate {
             }
         }
         val leapYears = doubleArrayOf(
-            startYear, startYear + 4, startYear + 8, startYear + 12, startYear + 16, startYear + 20,
-            startYear + 24, startYear + 28, startYear + 33
+            startYear, startYear + 4, startYear + 8, startYear + 12, startYear + 16, startYear + 20, startYear + 24, startYear + 28, startYear + 33
         )
         return Arrays.binarySearch(leapYears, year.toDouble()) >= 0
     }
@@ -85,20 +72,28 @@ class PersianDate : AbstractDate {
 //  }
 
     companion object {
-        private val dayNames = arrayOf("شنبه", "یک‌شنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه")
         private val monthNames = arrayOf(
-            "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور",
-            "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"
+            R.string.farvardin,
+            R.string.ordibehesht,
+            R.string.khordad,
+            R.string.tir,
+            R.string.mordad,
+            R.string.shahrivar,
+            R.string.mehr,
+            R.string.aban,
+            R.string.azar,
+            R.string.dey,
+            R.string.bahman,
+            R.string.esfand,
         )
 
         private val monthLengthNotLeap = arrayOf(31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29)
         private val monthLengthLeap = arrayOf(31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30)
 
-        fun today() =
-            PersianDate().apply {
-                this.hour = 0
-                this.minute = 0
-                this.second = 0
-            }
+        fun today() = PersianDate().apply {
+            this.hour = 0
+            this.minute = 0
+            this.second = 0
+        }
     }
 }

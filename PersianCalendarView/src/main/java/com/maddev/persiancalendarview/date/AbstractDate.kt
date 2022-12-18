@@ -50,11 +50,11 @@ abstract class AbstractDate {
     val monthLength: Int get() = getMonthLength()
     val dayOfWeek: Int get() = dayOfWeek()
 
+    abstract val firstDayOfWeek: DayOfWeek
     protected abstract val monthLengthListNotLeap: Array<Int>
     protected abstract val monthLengthListLeap: Array<Int>
 
-    abstract val monthNames: Array<String>
-    abstract val dayOfWeekNames: Array<String>
+    abstract val monthNames: Array<Int>
 
     constructor() : this(Date())
 
@@ -301,8 +301,7 @@ abstract class AbstractDate {
      * @return zero if current year and month are the same as the given one,
      * negative if [before] returns true and positive if [after] returns true
      */
-    fun monthsUntilDate(date: AbstractDate): Int =
-        (this.year - date.year ) * monthLengthListLeap.size + (this.month - date.month)
+    fun monthsUntilDate(date: AbstractDate): Int = (this.year - date.year) * monthLengthListLeap.size + (this.month - date.month)
 
     /**
      * convert AbstractDate class to date
@@ -317,7 +316,25 @@ abstract class AbstractDate {
      * @param date Date
      * @return day of week in desired calendar
      */
-    protected abstract fun dayOfWeek(date: Date = this.toDate()): Int
+    fun dayOfWeek(date: Date = this.toDate(), firstDayOfWeek: DayOfWeek = this.firstDayOfWeek): Int {
+        val dayOfWeek = androidDayOfWeekRearranged(date) - firstDayOfWeek.position
+        return if (dayOfWeek < 0) dayOfWeek + 7 else dayOfWeek
+    }
+
+    /**
+     * Returns 0 if [androidDayOfWeek]'s result is equal to [Calendar.SATURDAY],
+     * and the result itself if it is not.
+     */
+    private fun androidDayOfWeekRearranged(date: Date): Int = androidDayOfWeek(date) % 7
+
+    /**
+     * Returns android calendar's day of week
+     */
+    private fun androidDayOfWeek(date: Date): Int =
+        Calendar.getInstance().let {
+            it.time = date
+            it[Calendar.DAY_OF_WEEK]
+        }
 
     /**
      * Checks if the time is passed midday
@@ -330,9 +347,9 @@ abstract class AbstractDate {
 
     fun get12FormatHour(hour: Int = this.hour): Int = if (hour <= 12) hour else hour - 12
 
-    fun getMonthName(month: Int = this.month): String = monthNames[month - 1]
+    fun getMonthName(month: Int = this.month): Int = monthNames[month - 1]
 
-    fun getDayOfWeekName(): String = dayOfWeekNames[dayOfWeek]
+    fun getDayOfWeekName(firstDayOfWeek: DayOfWeek = this.firstDayOfWeek): Int = dayOfWeekNames[dayOfWeek(firstDayOfWeek = firstDayOfWeek)]
 
     /**
      * Calc day of the year
@@ -353,6 +370,15 @@ abstract class AbstractDate {
         val PM_SHORT_NAME = R.string.pm
         val AM_NAME = R.string.am_name
         val PM_NAME = R.string.pm_name
+        val dayOfWeekNames = arrayOf(
+            R.string.saturday,
+            R.string.sunday,
+            R.string.monday,
+            R.string.tuesday,
+            R.string.wednesday,
+            R.string.thursday,
+            R.string.friday
+        )
 
         /**
          * Author: JDF.SCR.IR =>> Download Full Version :  http://jdf.scr.ir/jdf License: GNU/LGPL _ Open
@@ -431,5 +457,14 @@ abstract class AbstractDate {
         }
 
         fun tomorrow(): AbstractDate = today().apply { addDays(1) }
+
+        fun getDayOfWeek(index: Int): DayOfWeek {
+            val newIndex = if (index > 6 || index < 0) abs(index % 7) else index
+            return DayOfWeek.values()[newIndex]
+        }
+    }
+
+    enum class DayOfWeek(val position: Int) {
+        SATURDAY(0), SUNDAY(1), MONDAY(2), TUESDAY(3), WEDNESDAY(4), THURSDAY(5), FRIDAY(6);
     }
 }

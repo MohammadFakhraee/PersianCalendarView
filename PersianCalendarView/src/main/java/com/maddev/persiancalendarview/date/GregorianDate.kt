@@ -1,13 +1,15 @@
 package com.maddev.persiancalendarview.date
 
+import androidx.annotation.StringRes
+import com.maddev.persiancalendarview.R
 import java.util.*
 
 class GregorianDate : AbstractDate {
 
     override val monthLengthListNotLeap: Array<Int> get() = monthLengthNotLeap
     override val monthLengthListLeap: Array<Int> get() = monthLengthLeap
-    override val monthNames: Array<String> get() = GregorianDate.monthNames
-    override val dayOfWeekNames: Array<String> get() = GregorianDate.dayOfWeekNames
+    override val monthNames: Array<Int> get() = GregorianDate.monthNames
+    override val firstDayOfWeek = DayOfWeek.SUNDAY
 
     constructor() : super()
 
@@ -23,12 +25,6 @@ class GregorianDate : AbstractDate {
      */
     override fun isLeap(year: Int): Boolean = (year % 4 == 0) && (year % 100 != 0 || year % 400 == 0)
 
-    override fun dayOfWeek(date: Date): Int =
-        Calendar.getInstance().let {
-            it.time = date
-            it[Calendar.DAY_OF_WEEK] - 1
-        }
-
     override fun convertFromGregorian(year: Int, month: Int, day: Int): IntArray {
         return intArrayOf(year, month, day)
     }
@@ -38,10 +34,19 @@ class GregorianDate : AbstractDate {
     }
 
     companion object {
-        private val dayOfWeekNames = arrayOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
         private val monthNames = arrayOf(
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
+            R.string.january,
+            R.string.february,
+            R.string.march,
+            R.string.april,
+            R.string.may,
+            R.string.june,
+            R.string.july,
+            R.string.august,
+            R.string.september,
+            R.string.october,
+            R.string.november,
+            R.string.december,
         )
         private val monthLengthNotLeap = arrayOf(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
         private val monthLengthLeap = arrayOf(31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
