@@ -48,7 +48,6 @@ class MonthView(context: Context, attrs: AttributeSet? = null) : RecyclerView(co
             // returns the index of day in week (not the number of day in week)
             it.monthStartOffset = if (firstDayOfWeek != null) currentMonth.dayOfWeek(firstDayOfWeek = firstDayOfWeek) else currentMonth.dayOfWeek
             it.prevMonthLength = previousMonth.monthLength
-            it.checkSelectedDayOfMonth()
             it.notifyItemRangeChanged(0, it.itemCount)
         }
     }

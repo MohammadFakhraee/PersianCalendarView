@@ -153,7 +153,7 @@ class PersianCalendarView(context: Context, attrs: AttributeSet? = null) : Recyc
         sharedMonthViewData.setSelectedDay(timeInMilliSecond)
         val position = monthsAdapter.positionFromOffset(sharedMonthViewData.getOffsetFromCurrentDate())
         if (animation) smoothScrollToPosition(position) else scrollToPosition(position)
-        monthsAdapter.notifyItemChanged(position)
+        monthsAdapter.notifyMonthSelected(position)
     }
 
     fun setFirstDayOfWeek(firstDayOfWeek: Int) {

@@ -37,6 +37,11 @@ class MonthsAdapter(
 
     fun offsetFromMiddle(position: Int) = position - middlePosition()
 
+    fun notifyMonthSelected(position: Int) {
+        selectedMonthViewPosition = position
+        notifyItemChanged(position)
+    }
+
     inner class MonthsViewHolder(private val binding: ItemCalendarBinding) : ViewHolder(binding.root) {
 
         private var currentDate: AbstractDate? = null

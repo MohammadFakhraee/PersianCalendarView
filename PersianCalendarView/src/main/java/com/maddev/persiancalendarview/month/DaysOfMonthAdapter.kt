@@ -14,7 +14,6 @@ class DaysOfMonthAdapter(
     var monthOfYear: Int = DEF_DATE_NUMBER
     var monthLength: Int = DEF_DATE_NUMBER
     var prevMonthLength: Int = DEF_DATE_NUMBER
-    private var selectedDayOfMonth: Int = DEF_INDEX
 
     private var onDayViewClickListener: ((dayOfMonth: Int) -> Unit)? = null
 
@@ -35,19 +34,16 @@ class DaysOfMonthAdapter(
         this.onDayViewClickListener = onDayViewClickListener
     }
 
-    fun checkSelectedDayOfMonth() {
-        if (isToday(sharedMonthViewData.selectedDay)) selectedDayOfMonth = sharedMonthViewData.selectedDay
-    }
-
     private fun selectDay(dayOfMonthNumber: Int) {
+        val selectedDayOfMonth = sharedMonthViewData.getSelectedDayIfOnThisMonth(monthOfYear)
         sharedMonthViewData.setSelectedDay(year, monthOfYear, dayOfMonthNumber)
         getPositionFromDayOfMonth(selectedDayOfMonth).takeIf { it >= 0 }?.let { notifyItemChanged(it) }
         getPositionFromDayOfMonth(dayOfMonthNumber).takeIf { it >= 0 }?.let { notifyItemChanged(it) }
-        selectedDayOfMonth = dayOfMonthNumber
         onDayViewClickListener?.invoke(dayOfMonthNumber)
     }
 
-    private fun getPositionFromDayOfMonth(dayOfMonthNumber: Int) = 6 + monthStartOffset + dayOfMonthNumber
+    private fun getPositionFromDayOfMonth(dayOfMonthNumber: Int?) =
+        dayOfMonthNumber?.let { 6 + monthStartOffset + it } ?: DEF_INDEX
 
     inner class DayOfMonthViewHolder(dayView: DayView) : ViewHolder(dayView) {
 

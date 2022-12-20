@@ -32,7 +32,7 @@ class SharedMonthViewData(context: Context) {
     private var selectedDate = todayDateInstance()
     private val selectedYear: Int get() = selectedDate.year
     private val selectedMonth: Int get() = selectedDate.month
-    val selectedDay: Int get() = selectedDate.day
+    private val selectedDay: Int get() = selectedDate.day
 
     val monthTitleColor = context.resolveColor(R.color.colorOnSecondary)
     val arrowTintColor = context.resolveColor(R.color.colorOnSecondary)
@@ -67,6 +67,8 @@ class SharedMonthViewData(context: Context) {
         offset > 0 -> todayDateInstance().addMonths(offset)
         else -> todayDateInstance().subMonths(abs(offset))
     }
+
+    fun getSelectedDayIfOnThisMonth(month: Int): Int? = selectedDay.takeIf { month == selectedMonth }
 
     fun getDayOfWeekTitle(index: Int): Int {
         val firstDayOfWeekIndex = firstDayOfWeek?.position ?: todayDate.firstDayOfWeek.position
