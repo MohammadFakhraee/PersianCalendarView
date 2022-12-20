@@ -2,9 +2,11 @@ package com.maddev.persiancalendarview.calendar
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.color.MaterialColors
 import com.maddev.persiancalendarview.R
 import com.maddev.persiancalendarview.date.AbstractDate
 import com.maddev.persiancalendarview.date.DateType
@@ -38,7 +40,7 @@ class PersianCalendarView(context: Context, attrs: AttributeSet? = null) : Recyc
     }
 
     init {
-        context.theme.obtainStyledAttributes(attrs, R.styleable.PersianCalendarView, 0, 0).apply {
+        context.obtainStyledAttributes(attrs, R.styleable.PersianCalendarView, 0, 0).apply {
             try {
                 sharedDayViewStyle.setTextSize(
                     getDimension(R.styleable.PersianCalendarView_daysTextSize, sharedDayViewStyle.defTextSize)
