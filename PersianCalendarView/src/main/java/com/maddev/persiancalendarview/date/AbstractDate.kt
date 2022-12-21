@@ -124,6 +124,11 @@ abstract class AbstractDate {
     ): Int = if (isLeap(year)) monthLengthListLeap[month - 1] else monthLengthListNotLeap[month - 1]
 
     /**
+     * returns start day of month
+     */
+    fun startOfMonth(): AbstractDate = apply { day = 1 }
+
+    /**
      * Subtract given date from current date
      *
      * @param SubYear Number of subtraction years

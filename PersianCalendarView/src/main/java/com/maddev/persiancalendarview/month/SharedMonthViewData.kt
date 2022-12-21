@@ -58,14 +58,12 @@ class SharedMonthViewData(context: Context) {
     fun isDaySelected(year: Int, monthOfYear: Int, dayOfMonthNumber: Int) =
         selectedYear == year && selectedMonth == monthOfYear && selectedDay == dayOfMonthNumber
 
-    fun getMonthStartDateFromOffset(offset: Int): AbstractDate {
-        return getDateFromOffset(offset).also { it.day = 1 }
-    }
+    private fun getStartOfMonth(): AbstractDate = todayDateInstance().startOfMonth()
 
-    private fun getDateFromOffset(offset: Int): AbstractDate = when {
-        offset == 0 -> todayDateInstance()
-        offset > 0 -> todayDateInstance().addMonths(offset)
-        else -> todayDateInstance().subMonths(abs(offset))
+    fun getStartOfMonthFromOffset(offset: Int): AbstractDate = when {
+        offset == 0 -> getStartOfMonth()
+        offset > 0 -> getStartOfMonth().addMonths(offset)
+        else -> getStartOfMonth().subMonths(abs(offset))
     }
 
     fun getSelectedDayIfOnThisMonth(month: Int): Int? = selectedDay.takeIf { month == selectedMonth }

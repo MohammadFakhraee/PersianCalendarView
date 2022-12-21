@@ -24,7 +24,7 @@ class MonthsAdapter(
 
     override fun onBindViewHolder(holder: MonthsViewHolder, position: Int) {
         val offset = offsetFromMiddle(position)
-        val currentShownMonth = sharedMonthViewData.getMonthStartDateFromOffset(offset)
+        val currentShownMonth = sharedMonthViewData.getStartOfMonthFromOffset(offset)
         val previousShownMonth = sharedMonthViewData.previousMonth(currentShownMonth)
         holder.onBind(currentShownMonth, previousShownMonth)
     }
