@@ -4,8 +4,13 @@
 
 An android date picker for Persian people. Great for those who containing Jalali (Shamsi) calendar in their app. It is created according to android's original CalendarView but it **_does not_** override it.
 
-![LighCalendar](https://user-images.githubusercontent.com/52785844/208228358-d8009619-1f89-4281-bce8-d590e92e9eda.PNG)
-![NightCalendar](https://user-images.githubusercontent.com/52785844/208228243-9ef80f50-c41b-4816-8110-b43c288dd184.PNG)
+## Preview
+
+![Light01](https://user-images.githubusercontent.com/52785844/209424643-93990185-a1a1-4995-9e66-3e115ac51e0b.png)
+![Night01](https://user-images.githubusercontent.com/52785844/209424737-24b4f239-29fc-4414-8fbc-2b24a4143f67.png)
+
+![Light02](https://user-images.githubusercontent.com/52785844/209425080-61d6f703-b53c-420f-bea3-e4e65d2ea3a9.png)
+![Night02](https://user-images.githubusercontent.com/52785844/209424677-cd002d0a-2de6-4091-99c8-dd5208a6f373.png)
 
 This view has some features such as:
 * Handling infinite loop for calendar.
