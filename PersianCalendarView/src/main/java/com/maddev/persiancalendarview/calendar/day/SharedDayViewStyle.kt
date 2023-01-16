@@ -1,11 +1,11 @@
-package com.maddev.persiancalendarview.day
+package com.maddev.persiancalendarview.calendar.day
 
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.view.ViewGroup
 import com.maddev.persiancalendarview.R
-import com.maddev.persiancalendarview.month.SharedMonthViewData
+import com.maddev.persiancalendarview.calendar.month.SharedMonthViewData
 import com.maddev.persiancalendarview.utils.dp
 import com.maddev.persiancalendarview.utils.formatDay
 import com.maddev.persiancalendarview.utils.resolveTypeface
@@ -18,15 +18,15 @@ class SharedDayViewStyle(
 
     val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
-    var rectPadding = 0.dp
+    var rectPadding = DEF_RECT_PADDING.dp
         set(value) {
             field = value.dp
         }
-    var rectCornerRadius: Float = 12.dp
+    var rectCornerRadius: Float = DEF_RECT_CORNER_RADIUS.dp
         set(value) {
             field = value.dp
         }
-    val defTextSize = 12.sp
+
     private val typeFace: Typeface = context.resolveTypeface(R.font.shabnam)!!
 
     val dayOfMonthSelectedTextPaint = createTextPaint()
@@ -90,4 +90,12 @@ class SharedDayViewStyle(
     )
 
     fun formatDay(dayOfMonth: String): String = sharedMonthViewData.formatNumber(dayOfMonth)
+
+    companion object {
+        const val DEF_RECT_PADDING = 0f
+        const val DEF_RECT_CORNER_RADIUS = 12f
+        const val DEF_TEXT_SIZE_INT = 12
+
+        val defTextSize = DEF_TEXT_SIZE_INT.sp
+    }
 }

@@ -2,16 +2,14 @@ package com.maddev.persiancalendarview.calendar
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.color.MaterialColors
 import com.maddev.persiancalendarview.R
+import com.maddev.persiancalendarview.calendar.day.SharedDayViewStyle
+import com.maddev.persiancalendarview.calendar.month.SharedMonthViewData
 import com.maddev.persiancalendarview.date.AbstractDate
 import com.maddev.persiancalendarview.date.DateType
-import com.maddev.persiancalendarview.day.SharedDayViewStyle
-import com.maddev.persiancalendarview.month.SharedMonthViewData
 import com.maddev.persiancalendarview.utils.resolveAttributeColor
 import com.maddev.persiancalendarview.utils.resolveColor
 
@@ -43,7 +41,7 @@ class PersianCalendarView(context: Context, attrs: AttributeSet? = null) : Recyc
         context.obtainStyledAttributes(attrs, R.styleable.PersianCalendarView, 0, 0).apply {
             try {
                 sharedDayViewStyle.setTextSize(
-                    getDimension(R.styleable.PersianCalendarView_daysTextSize, sharedDayViewStyle.defTextSize)
+                    getDimension(R.styleable.PersianCalendarView_daysTextSize, SharedDayViewStyle.defTextSize)
                 )
                 sharedDayViewStyle.rectPadding = getDimension(R.styleable.PersianCalendarView_rectPadding, sharedDayViewStyle.rectPadding)
 
@@ -51,29 +49,19 @@ class PersianCalendarView(context: Context, attrs: AttributeSet? = null) : Recyc
                     getDimension(R.styleable.PersianCalendarView_rectCornerRadius, sharedDayViewStyle.rectCornerRadius)
 
                 sharedDayViewStyle.setHighlightDayColor(
-                    getColor(
-                        R.styleable.PersianCalendarView_highlightDayColor,
-                        context.resolveAttributeColor(com.google.android.material.R.attr.colorSecondary)// e.g. RED
-                    )
+                    getColor(R.styleable.PersianCalendarView_highlightDayColor, context.resolveAttributeColor(DEF_HIGHLIGHT_COLOR_ID))
                 )
 
                 sharedDayViewStyle.setOnHighlightDayColor(
-                    getColor(
-                        R.styleable.PersianCalendarView_onHighlightDayColor,
-                        context.resolveAttributeColor(com.google.android.material.R.attr.colorOnPrimary) // e.g. WHITE
-                    )
+                    getColor(R.styleable.PersianCalendarView_onHighlightDayColor, context.resolveAttributeColor(DEF_ON_HIGHLIGHT_COLOR_ID))
                 )
 
                 sharedDayViewStyle.setDayOfMonthColor(
-                    getColor(
-                        R.styleable.PersianCalendarView_dayOfMonthColor, context.resolveColor(R.color.colorOnSecondary) // e.g. BLACK
-                    )
+                    getColor(R.styleable.PersianCalendarView_dayOfMonthColor, context.resolveColor(DEF_DAY_OF_MONTH_COLOR_ID))
                 )
 
                 sharedDayViewStyle.setDayOutOfMonthColor(
-                    getColor(
-                        R.styleable.PersianCalendarView_dayOutOfMonthColor, context.resolveColor(R.color.gray) // E.G. GRAY
-                    )
+                    getColor(R.styleable.PersianCalendarView_dayOutOfMonthColor, context.resolveColor(DEF_DAY_OUT_OF_MONTH_COLOR_ID))
                 )
             } finally {
                 recycle()
@@ -166,5 +154,12 @@ class PersianCalendarView(context: Context, attrs: AttributeSet? = null) : Recyc
     private fun validation() {
         invalidate()
         requestLayout()
+    }
+
+    companion object {
+        val DEF_HIGHLIGHT_COLOR_ID = com.google.android.material.R.attr.colorSecondary      // e.g. RED
+        val DEF_ON_HIGHLIGHT_COLOR_ID = com.google.android.material.R.attr.colorOnPrimary   // e.g. WHITE
+        val DEF_DAY_OF_MONTH_COLOR_ID = R.color.colorOnSecondary                            // e.g. BLACK
+        val DEF_DAY_OUT_OF_MONTH_COLOR_ID = R.color.gray                                    // E.G. GRAY
     }
 }

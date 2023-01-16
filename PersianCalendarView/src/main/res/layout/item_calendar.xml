@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="فروردین 1401" />
 
-    <com.maddev.persiancalendarview.month.MonthView
+    <com.maddev.persiancalendarview.calendar.month.MonthView
         android:id="@+id/monthView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

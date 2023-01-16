@@ -1,9 +1,9 @@
-package com.maddev.persiancalendarview.month
+package com.maddev.persiancalendarview.calendar.month
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.maddev.persiancalendarview.day.DayView
+import com.maddev.persiancalendarview.calendar.day.DayView
 
 class DaysOfMonthAdapter(
     private val sharedMonthViewData: SharedMonthViewData

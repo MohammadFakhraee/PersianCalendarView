@@ -1,4 +1,4 @@
-package com.maddev.persiancalendarview.month
+package com.maddev.persiancalendarview.calendar.month
 
 import android.content.Context
 import android.graphics.Rect

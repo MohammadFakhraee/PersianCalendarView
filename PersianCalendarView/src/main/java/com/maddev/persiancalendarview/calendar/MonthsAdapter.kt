@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.maddev.persiancalendarview.R
 import com.maddev.persiancalendarview.databinding.ItemCalendarBinding
 import com.maddev.persiancalendarview.date.AbstractDate
-import com.maddev.persiancalendarview.month.SharedMonthViewData
+import com.maddev.persiancalendarview.calendar.month.SharedMonthViewData
 import com.maddev.persiancalendarview.utils.formatYear
 
 class MonthsAdapter(

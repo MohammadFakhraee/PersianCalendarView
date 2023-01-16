@@ -1,4 +1,4 @@
-package com.maddev.persiancalendarview.month
+package com.maddev.persiancalendarview.calendar.month
 
 import android.content.Context
 import com.maddev.persiancalendarview.R
@@ -6,7 +6,7 @@ import com.maddev.persiancalendarview.date.AbstractDate
 import com.maddev.persiancalendarview.date.DateType
 import com.maddev.persiancalendarview.date.GregorianDate
 import com.maddev.persiancalendarview.date.PersianDate
-import com.maddev.persiancalendarview.day.SharedDayViewStyle
+import com.maddev.persiancalendarview.calendar.day.SharedDayViewStyle
 import com.maddev.persiancalendarview.utils.PersianHelper
 import com.maddev.persiancalendarview.utils.dp
 import com.maddev.persiancalendarview.utils.reInit

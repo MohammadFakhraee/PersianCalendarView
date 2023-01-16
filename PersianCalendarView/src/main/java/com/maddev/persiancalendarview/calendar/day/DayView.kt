@@ -1,4 +1,4 @@
-package com.maddev.persiancalendarview.day
+package com.maddev.persiancalendarview.calendar.day
 
 import android.content.Context
 import android.graphics.Canvas

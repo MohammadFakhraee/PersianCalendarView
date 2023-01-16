@@ -2,6 +2,7 @@ package com.maddev.persiancalendarview.utils
 
 import android.content.Context
 import android.content.res.Resources
+import android.os.Parcel
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -26,3 +27,11 @@ fun Int.formatDay(): String = "%01d".format(this)
 fun Int.formatYear(): String = "%04d".format(this)
 
 fun AbstractDate.reInit(timeInMilliSeconds: Long): AbstractDate = apply { init(timeInMilliSeconds) }
+
+val TRUE get() = 1
+val FALSE get() = 0
+fun Parcel.writeBool(value: Boolean) {
+    writeInt(if (value) TRUE else FALSE)
+}
+
+fun Parcel.readBool(): Boolean = readInt() == TRUE

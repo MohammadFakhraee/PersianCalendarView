@@ -35,4 +35,7 @@
     <string name="pm">ب. ظ.</string>
     <string name="am_name">قبل از ظهر</string>
     <string name="pm_name">بعد از ظهر</string>
+    // Calendar picker dialog
+    <string name="picker_dialog_accept">تایید</string>
+    <string name="picker_dialog_cancel">لغو</string>
 </resources>

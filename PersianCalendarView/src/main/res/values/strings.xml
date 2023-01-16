@@ -41,4 +41,7 @@
     <string name="pm">PM</string>
     <string name="am_name">AM</string>
     <string name="pm_name">PM</string>
+    // Calendar picker dialog
+    <string name="picker_dialog_accept">Accept</string>
+    <string name="picker_dialog_cancel">Cancel</string>
 </resources>
