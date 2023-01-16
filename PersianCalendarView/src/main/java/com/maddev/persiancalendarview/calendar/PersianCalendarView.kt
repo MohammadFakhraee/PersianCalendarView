@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.maddev.persiancalendarview.R
 import com.maddev.persiancalendarview.calendar.day.SharedDayViewStyle
+import com.maddev.persiancalendarview.calendar.month.MonthView
 import com.maddev.persiancalendarview.calendar.month.SharedMonthViewData
 import com.maddev.persiancalendarview.date.AbstractDate
 import com.maddev.persiancalendarview.date.DateType
@@ -151,6 +152,15 @@ class PersianCalendarView(context: Context, attrs: AttributeSet? = null) : Recyc
         validation()
     }
 
+    fun setCellSpacing(horizontalCellSpaces: Int, verticalCellSpaces: Int, direction: SpaceDirection) {
+        sharedMonthViewData.apply {
+            this.horizontalCellSpaces = horizontalCellSpaces
+            this.verticalCellSpaces = verticalCellSpaces
+            this.cellSpaceDirection = direction
+        }
+        validation()
+    }
+
     private fun validation() {
         invalidate()
         requestLayout()
@@ -161,5 +171,9 @@ class PersianCalendarView(context: Context, attrs: AttributeSet? = null) : Recyc
         val DEF_ON_HIGHLIGHT_COLOR_ID = com.google.android.material.R.attr.colorOnPrimary   // e.g. WHITE
         val DEF_DAY_OF_MONTH_COLOR_ID = R.color.colorOnSecondary                            // e.g. BLACK
         val DEF_DAY_OUT_OF_MONTH_COLOR_ID = R.color.gray                                    // E.G. GRAY
+    }
+
+    enum class SpaceDirection {
+        HORIZONTAL_SPACE, VERTICAL_SPACE, BOTH_DIRECTIONS_SPACE
     }
 }

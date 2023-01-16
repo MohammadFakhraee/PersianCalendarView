@@ -86,6 +86,11 @@ All of the xml attributes can be changed with kotlin codes.
             setOnHighlightDayColor(Color.WHITE)  // Color of text above the rectangle
             setDayOfMonthColor(Color.BLACK)      // Color for days within the shown month
             setDayOutOfMonthColor(Color.GRAY)    // Color for days outside of the shown month
+            setCellSpacing(                      // Change cell spacing between day cells
+                /* Horizontal cell space */ 8,
+                /* Vertical cell space */ 8,
+                /* Direction to apply the spaces */ PersianCalendarView.SpaceDirection.BOTH_DIRECTIONS_SPACE
+            )
             // Option 2. Change color palette in one call
             setColorPalette(
                 highlightDay = Color.RED,

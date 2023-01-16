@@ -2,6 +2,7 @@ package com.maddev.persiancalendarview.calendar.month
 
 import android.content.Context
 import com.maddev.persiancalendarview.R
+import com.maddev.persiancalendarview.calendar.PersianCalendarView
 import com.maddev.persiancalendarview.date.AbstractDate
 import com.maddev.persiancalendarview.date.DateType
 import com.maddev.persiancalendarview.date.GregorianDate
@@ -18,8 +19,9 @@ class SharedMonthViewData(context: Context) {
 
     val sharedDayViewStyle = SharedDayViewStyle(this, context)
 
-    val cellSpaces: Int = 8.dp.toInt()
-    val cellSpaceDirection: MonthView.SpaceDirection = MonthView.SpaceDirection.HORIZONTAL_SPACE
+    var horizontalCellSpaces: Int = DEF_HORIZONTAL_CELL_SPACE.dp.toInt()
+    var verticalCellSpaces: Int = DEF_VERTICAL_CELL_SPACE.dp.toInt()
+    var cellSpaceDirection: PersianCalendarView.SpaceDirection = PersianCalendarView.SpaceDirection.HORIZONTAL_SPACE
 
     var dateType: DateType = DateType.PERSIAN
     var firstDayOfWeek: AbstractDate.DayOfWeek? = null
@@ -112,5 +114,10 @@ class SharedMonthViewData(context: Context) {
     fun formatNumber(number: String): String = when {
         Locale.getDefault().language.contains("fa") -> PersianHelper.toPersianNumber(number)
         else -> PersianHelper.toEnglishNumber(number)
+    }
+
+    companion object {
+        const val DEF_HORIZONTAL_CELL_SPACE = 8
+        const val DEF_VERTICAL_CELL_SPACE = 0
     }
 }
