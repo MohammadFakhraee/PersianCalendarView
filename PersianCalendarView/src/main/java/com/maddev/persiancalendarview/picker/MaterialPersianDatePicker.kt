@@ -102,11 +102,7 @@ class MaterialPersianDatePicker private constructor() : DialogFragment() {
         binding.acceptTxt.run {
             setTextColor(requireContext().resolveAttributeColor(calendarViewStyle.highlightColorId))
             setOnClickListener {
-                val selectedDay = dateType.getInstance(selectedTimeInMillis).apply {
-                    hour = 0
-                    minute = 0
-                    second = 0
-                }
+                val selectedDay = dateType.getInstance(selectedTimeInMillis)
                 onPositiveButtonClickListeners.forEach { listener ->
                     listener(selectedDay.year, selectedDay.month, selectedDay.day, selectedDay.timeInMilliSecond)
                 }
