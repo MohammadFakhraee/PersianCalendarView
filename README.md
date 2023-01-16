@@ -2,12 +2,14 @@
 
 # PersianCalendarView
 
-An android date picker for Persian people. Great for those who containing Jalali (Shamsi) calendar in their app. It is created accorfing to android's original CalendarView but it **does not** override it.
+An android date picker for Persian people. Great for those who containing Jalali (Shamsi) calendar in their app. It is created accorfing to
+android's original CalendarView but it **does not** override it.
 
 ![LighCalendar](https://user-images.githubusercontent.com/52785844/208228358-d8009619-1f89-4281-bce8-d590e92e9eda.PNG)
 ![NightCalendar](https://user-images.githubusercontent.com/52785844/208228243-9ef80f50-c41b-4816-8110-b43c288dd184.PNG)
 
 This view has some features such as:
+
 * Handling infinite loop for calendar.
 * Containing both Jalali (Shamsi) and Gregorian calendars.
 * Being compatible with application's theme color (both light-night theme).
@@ -35,16 +37,15 @@ dependencies {
 
 ## Usage
 
-### Inside layout
+### 1. Using view inside layout
 
 ```xml
-<com.maddev.persiancalendarview.calendar.PersianCalendarView
-        android:id="@+id/shamsiView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
+<com.maddev.persiancalendarview.calendar.PersianCalendarView android:id="@+id/shamsiView" android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
 ```
 
-### Xml customization
+#### Xml customization
 
 There are some attributes you can set via xml file.
 
@@ -64,7 +65,7 @@ There are some attributes you can set via xml file.
         />                 
 ```
 
-### Kotlin customization
+#### Kotlin customization
 
 All of the xml attributes can be changed with kotlin codes.
 
@@ -97,11 +98,12 @@ All of the xml attributes can be changed with kotlin codes.
             setFirstDayOfWeek(AbstractDate.DayOfWeek.SUNDAY.position)
         }
 ```
+
 **CAUTION!** be careful to support dark/light theme when changing default colors.
 
 **Note:** additional attributes will be added to the view.
 
-### Listener
+### 2. Calendar View Listener
 
 You can easily set user's selected day listener by calling `setOnDaySelectedListener` method.
 
@@ -117,9 +119,30 @@ You can easily set user's selected day listener by calling `setOnDaySelectedList
         }
 ```
 
+### 3. Using dialog date picker
+
+In order to use date picker in the form of dialog, instead of in-layout view, you can do as below:
+
+```kotlin
+
+// 1. (optional) you can set customized attributes to PersianCalendarView by creating a CalendarViewStyle instance in a builder pattern:
+val calendarViewStyle = CalendarViewStyle.Builder()
+    .setRectCornerRadius(16f)
+    .setDaysTextSizeSp(10)
+    .build()
+
+// 2. Easily create a MaterialPersianDatePicker dialog with its own builder class as below:
+val materialPersianCalendarDatePicker = MaterialPersianDatePicker.Builder()
+    .setCalendarViewStyle(calendarViewStyle)
+    .setDateType(DateType.PERSIAN)
+    .setSelectedDate(System.currentTimeMillis())
+    .build()
+```
+
 ## Todo
 
 This view needs to be extended and support following features:
+
 1. Another calendar types such as ARABIC (GHAMARI)
 2. Add holidays to calendar
 3. Multiple days selection
