@@ -40,7 +40,7 @@ dependencies {
 
 ## Usage
 
-### Inside layout
+### 1. Using view inside layout
 
 ```xml
 <com.maddev.persiancalendarview.calendar.PersianCalendarView
@@ -49,7 +49,7 @@ dependencies {
         android:layout_height="wrap_content" />
 ```
 
-### Xml customization
+#### Xml customization
 
 There are some attributes you can set via xml file.
 
@@ -69,7 +69,7 @@ There are some attributes you can set via xml file.
         />                 
 ```
 
-### Kotlin customization
+#### Kotlin customization
 
 All of the xml attributes can be changed with kotlin codes.
 
@@ -106,7 +106,7 @@ All of the xml attributes can be changed with kotlin codes.
 
 **Note:** additional attributes will be added to the view.
 
-### Listener
+### 2. Calendar View Listener
 
 You can easily set user's selected day listener by calling `setOnDaySelectedListener` method.
 
@@ -120,6 +120,26 @@ You can easily set user's selected day listener by calling `setOnDaySelectedList
                 ->
             }
         }
+```
+
+### 3. Using dialog date picker
+
+In order to use date picker in the form of dialog, instead of in-layout view, you can do as below:
+
+```kotlin
+
+// 1. (optional) you can set customized attributes to PersianCalendarView by creating a CalendarViewStyle instance in a builder pattern:
+val calendarViewStyle = CalendarViewStyle.Builder()
+    .setRectCornerRadius(16f)
+    .setDaysTextSizeSp(10)
+    .build()
+
+// 2. Easily create a MaterialPersianDatePicker dialog with its own builder class as below:
+val materialPersianCalendarDatePicker = MaterialPersianDatePicker.Builder()
+    .setCalendarViewStyle(calendarViewStyle)
+    .setDateType(DateType.PERSIAN)
+    .setSelectedDate(System.currentTimeMillis())
+    .build()
 ```
 
 ## Todo
