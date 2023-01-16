@@ -1,13 +1,14 @@
 package com.maddev.persiancalendarview.calendar
 
 import android.content.Context
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.AttributeSet
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.maddev.persiancalendarview.R
 import com.maddev.persiancalendarview.calendar.day.SharedDayViewStyle
-import com.maddev.persiancalendarview.calendar.month.MonthView
 import com.maddev.persiancalendarview.calendar.month.SharedMonthViewData
 import com.maddev.persiancalendarview.date.AbstractDate
 import com.maddev.persiancalendarview.date.DateType
@@ -173,7 +174,19 @@ class PersianCalendarView(context: Context, attrs: AttributeSet? = null) : Recyc
         val DEF_DAY_OUT_OF_MONTH_COLOR_ID = R.color.gray                                    // E.G. GRAY
     }
 
-    enum class SpaceDirection {
-        HORIZONTAL_SPACE, VERTICAL_SPACE, BOTH_DIRECTIONS_SPACE
+    enum class SpaceDirection : Parcelable {
+        HORIZONTAL_SPACE, VERTICAL_SPACE, BOTH_DIRECTIONS_SPACE;
+
+        override fun describeContents(): Int = 0
+
+        override fun writeToParcel(dest: Parcel, flags: Int) {
+            dest.writeInt(values().indexOf(this))
+        }
+
+        companion object CREATOR : Parcelable.Creator<SpaceDirection> {
+            override fun createFromParcel(parcel: Parcel): SpaceDirection = values()[parcel.readInt()]
+
+            override fun newArray(size: Int): Array<SpaceDirection?> = arrayOfNulls(size)
+        }
     }
 }
