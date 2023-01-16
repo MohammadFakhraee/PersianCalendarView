@@ -93,7 +93,7 @@ class SharedDayViewStyle(
 
     companion object {
         const val DEF_RECT_PADDING = 0f
-        const val DEF_RECT_CORNER_RADIUS = 12f
+        const val DEF_RECT_CORNER_RADIUS = 1000f
         const val DEF_TEXT_SIZE_INT = 12
 
         val defTextSize = DEF_TEXT_SIZE_INT.sp

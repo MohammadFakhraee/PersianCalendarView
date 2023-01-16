@@ -3,16 +3,16 @@ package com.maddev.persiancalendarview.calendar.month
 import android.content.Context
 import com.maddev.persiancalendarview.R
 import com.maddev.persiancalendarview.calendar.PersianCalendarView
+import com.maddev.persiancalendarview.calendar.day.SharedDayViewStyle
 import com.maddev.persiancalendarview.date.AbstractDate
 import com.maddev.persiancalendarview.date.DateType
 import com.maddev.persiancalendarview.date.GregorianDate
 import com.maddev.persiancalendarview.date.PersianDate
-import com.maddev.persiancalendarview.calendar.day.SharedDayViewStyle
 import com.maddev.persiancalendarview.utils.PersianHelper
 import com.maddev.persiancalendarview.utils.dp
 import com.maddev.persiancalendarview.utils.reInit
 import com.maddev.persiancalendarview.utils.resolveColor
-import java.util.Locale
+import java.util.*
 import kotlin.math.abs
 
 class SharedMonthViewData(context: Context) {
@@ -21,7 +21,7 @@ class SharedMonthViewData(context: Context) {
 
     var horizontalCellSpaces: Int = DEF_HORIZONTAL_CELL_SPACE.dp.toInt()
     var verticalCellSpaces: Int = DEF_VERTICAL_CELL_SPACE.dp.toInt()
-    var cellSpaceDirection: PersianCalendarView.SpaceDirection = PersianCalendarView.SpaceDirection.HORIZONTAL_SPACE
+    var cellSpaceDirection: PersianCalendarView.SpaceDirection = DEF_CELL_SPACE_DIR
 
     var dateType: DateType = DateType.PERSIAN
     var firstDayOfWeek: AbstractDate.DayOfWeek? = null
@@ -39,7 +39,8 @@ class SharedMonthViewData(context: Context) {
     val monthTitleColor = context.resolveColor(R.color.colorOnSecondary)
     val arrowTintColor = context.resolveColor(R.color.colorOnSecondary)
 
-    fun isToday(year: Int, monthOfYear: Int, dayOfMonthNumber: Int) = todayYear == year && todayMonth == monthOfYear && todayDay == dayOfMonthNumber
+    fun isToday(year: Int, monthOfYear: Int, dayOfMonthNumber: Int) =
+        todayYear == year && todayMonth == monthOfYear && todayDay == dayOfMonthNumber
 
     fun setSelectedDay(selectedDate: AbstractDate) {
         setSelectedDay(selectedDate.timeInMilliSecond)
@@ -119,5 +120,6 @@ class SharedMonthViewData(context: Context) {
     companion object {
         const val DEF_HORIZONTAL_CELL_SPACE = 8
         const val DEF_VERTICAL_CELL_SPACE = 0
+        val DEF_CELL_SPACE_DIR = PersianCalendarView.SpaceDirection.HORIZONTAL_SPACE
     }
 }

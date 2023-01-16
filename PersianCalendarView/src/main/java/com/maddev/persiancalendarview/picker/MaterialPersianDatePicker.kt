@@ -72,8 +72,7 @@ class MaterialPersianDatePicker private constructor() : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (savedInstanceState ?: arguments)
-            ?.let { bundle ->
+        (savedInstanceState ?: arguments)?.let { bundle ->
                 firstDayOfWeek = bundle.getInt(FIRST_DAY_OF_WEEK_KEY)
                 selectedTimeInMillis = bundle.getLong(SELECTED_TIME_KEY)
                 hasHeader = bundle.getBoolean(HAS_HEADER_KEY)
@@ -93,6 +92,7 @@ class MaterialPersianDatePicker private constructor() : DialogFragment() {
             setOnHighlightDayColor(requireContext().resolveAttributeColor(calendarViewStyle.onHighlightColorId))
             setDayOfMonthColor(requireContext().resolveColor(calendarViewStyle.dayOfMonthColorId))
             setDayOutOfMonthColor(requireContext().resolveColor(calendarViewStyle.dayOutOfMonthColorId))
+            setCellSpacing(calendarViewStyle.horizontalCellSpace, calendarViewStyle.verticalCellSpace, calendarViewStyle.cellSpaceDirection)
             selectDate(selectedTimeInMillis, /* We don't need animation here */ false)
             setFirstDayOfWeek(firstDayOfWeek)
             setDateType(dateType)
@@ -120,10 +120,7 @@ class MaterialPersianDatePicker private constructor() : DialogFragment() {
                 dismiss()
             }
         }
-        return AlertDialog
-            .Builder(requireContext())
-            .setView(binding.root)
-            .create()
+        return AlertDialog.Builder(requireContext()).setView(binding.root).create()
     }
 
     override fun onCancel(dialog: DialogInterface) {
@@ -144,27 +141,21 @@ class MaterialPersianDatePicker private constructor() : DialogFragment() {
 
     fun clearOnPositiveButtonClickListeners() = this.onPositiveButtonClickListeners.clear()
 
-    fun addOnNegativeButtonClickListener(listener: () -> Unit) =
-        this.onNegativeButtonClickListeners.add(listener)
+    fun addOnNegativeButtonClickListener(listener: () -> Unit) = this.onNegativeButtonClickListeners.add(listener)
 
-    fun removeOnNegativeButtonClickListener(listener: () -> Unit) =
-        this.onNegativeButtonClickListeners.remove(listener)
+    fun removeOnNegativeButtonClickListener(listener: () -> Unit) = this.onNegativeButtonClickListeners.remove(listener)
 
     fun clearOnNegativeButtonClickListeners() = this.onNegativeButtonClickListeners.clear()
 
-    fun addOnCancelListener(listener: () -> Unit) =
-        this.onCancelListeners.add(listener)
+    fun addOnCancelListener(listener: () -> Unit) = this.onCancelListeners.add(listener)
 
-    fun removeOnCancelListener(listener: () -> Unit) =
-        this.onCancelListeners.remove(listener)
+    fun removeOnCancelListener(listener: () -> Unit) = this.onCancelListeners.remove(listener)
 
     fun clearOnCancelListener() = this.onCancelListeners.clear()
 
-    fun addOnDismissListener(listener: () -> Unit) =
-        this.onDismissListener.add(listener)
+    fun addOnDismissListener(listener: () -> Unit) = this.onDismissListener.add(listener)
 
-    fun removeOnDismissListener(listener: () -> Unit) =
-        this.onDismissListener.remove(listener)
+    fun removeOnDismissListener(listener: () -> Unit) = this.onDismissListener.remove(listener)
 
     fun clearOnDismissListener() = this.onDismissListener.clear()
 
