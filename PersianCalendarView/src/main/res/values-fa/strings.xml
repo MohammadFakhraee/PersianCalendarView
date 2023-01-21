@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="saturday">شنبه</string>
+    <string name="sunday">یکشنبه</string>
+    <string name="monday">دوشنبه</string>
+    <string name="tuesday">سه شنبه</string>
+    <string name="wednesday">چهارشنبه</string>
+    <string name="thursday">پنج شنبه</string>
+    <string name="friday">جمعه</string>
+    <string name="farvardin">فروردین</string>
+    <string name="ordibehesht">اردیبهشت</string>
+    <string name="khordad">خرداد</string>
+    <string name="tir">تیر</string>
+    <string name="mordad">مرداد</string>
+    <string name="shahrivar">شهریور</string>
+    <string name="mehr">مهر</string>
+    <string name="aban">آبان</string>
+    <string name="azar">آذر</string>
+    <string name="dey">دی</string>
+    <string name="bahman">بهمن</string>
+    <string name="esfand">اسفند</string>
+    <string name="january">ژانویه</string>
+    <string name="february">فوریه</string>
+    <string name="march">مارس</string>
+    <string name="april">آوریل</string>
+    <string name="may">می</string>
+    <string name="june">ژوئن</string>
+    <string name="july">ژوئیه</string>
+    <string name="august">اوت</string>
+    <string name="september">سپتامبر</string>
+    <string name="october">اکتبر</string>
+    <string name="november">نوامبر</string>
+    <string name="december">دسامبر</string>
+    <string name="am">ق. ظ.</string>
+    <string name="pm">ب. ظ.</string>
+    <string name="am_name">قبل از ظهر</string>
+    <string name="pm_name">بعد از ظهر</string>
+    // Calendar picker dialog
+    <string name="picker_dialog_accept">تایید</string>
+    <string name="picker_dialog_cancel">لغو</string>
+</resources>
