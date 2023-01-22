@@ -65,6 +65,16 @@ abstract class AbstractDate {
     }
 
     fun init(timeInMilliSecond: Long = this.timeInMilliSecond) {
+        initDateAndTimeFromMilliSeconds(timeInMilliSecond)
+        calculateTime()
+    }
+
+    private fun initDateAndTimeFromMilliSeconds(timeInMilliSecond: Long = this.timeInMilliSecond) {
+        initDateFromMilliSeconds(timeInMilliSecond)
+        initTimeFromMilliSeconds(timeInMilliSecond)
+    }
+
+    private fun initDateFromMilliSeconds(timeInMilliSecond: Long = this.timeInMilliSecond) {
         val intArr = convertFromGregorian(
             year = SimpleDateFormat("yyyy", locale).format(timeInMilliSecond).toInt(),
             month = SimpleDateFormat("MM", locale).format(timeInMilliSecond).toInt(),
@@ -73,10 +83,12 @@ abstract class AbstractDate {
         this.year = intArr[0]
         this.month = intArr[1]
         this.day = intArr[2]
+    }
+
+    private fun initTimeFromMilliSeconds(timeInMilliSecond: Long = this.timeInMilliSecond) {
         this.hour = SimpleDateFormat("HH", locale).format(timeInMilliSecond).toInt()
         this.minute = SimpleDateFormat("mm", locale).format(timeInMilliSecond).toInt()
         this.second = SimpleDateFormat("ss", locale).format(timeInMilliSecond).toInt()
-        calculateTime()
     }
 
     private fun calculateTime(
