@@ -54,7 +54,7 @@ class PersianDate : AbstractDate {
 
     override fun convertFromGregorian(year: Int, month: Int, day: Int): IntArray = gregorianToJalali(year, month, day)
 
-    override fun convertToGregorian(year: Int, month: Int, day: Int): IntArray = jalaliToGregorian(year, month, day)
+    override fun convertToGregorian(): IntArray = jalaliToGregorian(year, month, day)
 
     //  public ArrayList<PersianDate> getWeek(PersianDate date){
 //    ArrayList<PersianDate> currentWeek = new ArrayList<>();

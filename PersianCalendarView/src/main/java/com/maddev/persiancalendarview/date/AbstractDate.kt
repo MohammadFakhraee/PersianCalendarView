@@ -69,12 +69,12 @@ abstract class AbstractDate {
         calculateTime()
     }
 
-    private fun initDateAndTimeFromMilliSeconds(timeInMilliSecond: Long = this.timeInMilliSecond) {
+    fun initDateAndTimeFromMilliSeconds(timeInMilliSecond: Long = this.timeInMilliSecond) {
         initDateFromMilliSeconds(timeInMilliSecond)
         initTimeFromMilliSeconds(timeInMilliSecond)
     }
 
-    private fun initDateFromMilliSeconds(timeInMilliSecond: Long = this.timeInMilliSecond) {
+    fun initDateFromMilliSeconds(timeInMilliSecond: Long = this.timeInMilliSecond) {
         val intArr = convertFromGregorian(
             year = SimpleDateFormat("yyyy", locale).format(timeInMilliSecond).toInt(),
             month = SimpleDateFormat("MM", locale).format(timeInMilliSecond).toInt(),
@@ -85,27 +85,20 @@ abstract class AbstractDate {
         this.day = intArr[2]
     }
 
-    private fun initTimeFromMilliSeconds(timeInMilliSecond: Long = this.timeInMilliSecond) {
+    fun initTimeFromMilliSeconds(timeInMilliSecond: Long = this.timeInMilliSecond) {
         this.hour = SimpleDateFormat("HH", locale).format(timeInMilliSecond).toInt()
         this.minute = SimpleDateFormat("mm", locale).format(timeInMilliSecond).toInt()
         this.second = SimpleDateFormat("ss", locale).format(timeInMilliSecond).toInt()
     }
 
-    private fun calculateTime(
-        year: Int = this.year,
-        month: Int = this.month,
-        day: Int = this.day,
-        hour: Int = this.hour,
-        minute: Int = this.minute,
-        second: Int = this.second
-    ) {
-        val calculatedDate = convertToGregorian(year, month, day)
+    private fun calculateTime() {
+        val calculatedDate = convertToGregorian()
         updateTimeStamp(calculatedDate[0], calculatedDate[1], calculatedDate[2], hour, minute, second)
     }
 
     abstract fun convertFromGregorian(year: Int, month: Int, day: Int): IntArray
 
-    abstract fun convertToGregorian(year: Int, month: Int, day: Int): IntArray
+    abstract fun convertToGregorian(): IntArray
 
     private fun updateTimeStamp(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) {
         timeInMilliSecond = try {

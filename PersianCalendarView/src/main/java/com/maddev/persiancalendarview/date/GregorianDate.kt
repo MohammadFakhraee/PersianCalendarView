@@ -25,13 +25,9 @@ class GregorianDate : AbstractDate {
      */
     override fun isLeap(year: Int): Boolean = (year % 4 == 0) && (year % 100 != 0 || year % 400 == 0)
 
-    override fun convertFromGregorian(year: Int, month: Int, day: Int): IntArray {
-        return intArrayOf(year, month, day)
-    }
+    override fun convertFromGregorian(year: Int, month: Int, day: Int) = intArrayOf(year, month, day)
 
-    override fun convertToGregorian(year: Int, month: Int, day: Int): IntArray {
-        return intArrayOf(year, month, day)
-    }
+    override fun convertToGregorian() = intArrayOf(year, month, day)
 
     companion object {
         private val monthNames = arrayOf(
