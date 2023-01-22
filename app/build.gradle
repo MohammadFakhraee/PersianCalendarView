@@ -38,4 +38,17 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    // Local Unit Tests
+    implementation("androidx.test:core:$testCoreVersion")
+    testImplementation("junit:junit:$jUnitVersion")
+    testImplementation("androidx.arch.core:core-testing:$archCoreVersion")
+    testImplementation("com.google.truth:truth:$testTruthVersion")
+    testImplementation("org.mockito:mockito-core:$mockitoCoreVersion")
+    // Instrumented Unit Tests
+    androidTestImplementation("junit:junit:$jUnitVersion")
+    androidTestImplementation("androidx.arch.core:core-testing:$archCoreVersion")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("com.google.truth:truth:$testTruthVersion")
+    androidTestImplementation("org.mockito:mockito-core:$mockitoCoreVersion")
 }

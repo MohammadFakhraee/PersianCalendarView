@@ -1,4 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.testCoreVersion = "1.5.0"
+    ext.jUnitVersion = "4.13.2"
+    ext.archCoreVersion = "2.1.0"
+    ext.testTruthVersion = "1.1.2"
+    ext.mockitoCoreVersion = "4.10.0"
+}
+
 plugins {
     id 'com.android.application' version '7.3.1' apply false
     id 'com.android.library' version '7.3.1' apply false
