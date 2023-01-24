@@ -47,11 +47,6 @@ class GregorianDate : AbstractDate {
         private val monthLengthNotLeap = arrayOf(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
         private val monthLengthLeap = arrayOf(31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
 
-        fun today(): GregorianDate =
-            GregorianDate().apply {
-                hour = 0
-                minute = 0
-                second = 0
-            }
+        fun today(): GregorianDate = GregorianDate().apply { startDayUTC() }
     }
 }

@@ -47,6 +47,8 @@ abstract class AbstractDate {
      */
     private val locale: Locale get() = Locale.US
 
+    private val zoneOffsetManager = ZoneOffsetManager()
+
     val monthLength: Int get() = getMonthLength()
     val dayOfWeek: Int get() = dayOfWeek()
 
@@ -118,6 +120,37 @@ abstract class AbstractDate {
     abstract fun isLeap(year: Int = this.year): Boolean
 
     /**
+     * Changes time to start day of UTC.
+     */
+    fun startDayUTC() = startDayUTC(getZoneOffset(timeZoneId()))
+
+    /**
+     * Changes time to start day of UTC in the given zone offset.
+     */
+    fun startDayUTC(zoneOffset: ZoneOffset) {
+        startOfDay()
+        if (zoneOffset.shouldAdd) addDate(
+            AddHour = zoneOffset.hours.toLong(),
+            AddMinute = zoneOffset.minutes.toLong(),
+            AddSecond = zoneOffset.seconds.toLong()
+        ) else subDate(
+            SubHour = zoneOffset.hours.toLong(),
+            SubMinute = zoneOffset.minutes.toLong(),
+            SubSecond = zoneOffset.seconds.toLong()
+        )
+    }
+
+    private fun startOfDay() {
+        this.hour = 0
+        this.minute = 0
+        this.second = 0
+    }
+
+    fun timeZoneId(): String = zoneOffsetManager.getTimezoneId(toDate())
+
+    fun getZoneOffset(timeZoneId: String): ZoneOffset = zoneOffsetManager.getZoneOffset(timeZoneId)
+
+    /**
      * Get number of days in month
      *
      * @param year
@@ -170,7 +203,8 @@ abstract class AbstractDate {
             }
             daysMustDecrease += getMonthLength(tmpYear, tmpMonth)
         }
-        val calculatedMilliSecondsToDecrease = (daysMustDecrease * 86_400_000) + (SubHour * 3_600_000) + (SubMinute * 60_000) + (SubSecond * 1_000)
+        val calculatedMilliSecondsToDecrease =
+            (daysMustDecrease * 86_400_000) + (SubHour * 3_600_000) + (SubMinute * 60_000) + (SubSecond * 1_000)
         this.timeInMilliSecond -= calculatedMilliSecondsToDecrease
         this.init()
         return this
@@ -221,7 +255,8 @@ abstract class AbstractDate {
                 tmpMonth = 1
             }
         }
-        val calculatedMilliSecondsToIncrease = (daysMustIncrease * 86_400_000) + (AddHour * 3_600_000) + (AddMinute * 60_000) + (AddSecond * 1_000)
+        val calculatedMilliSecondsToIncrease =
+            (daysMustIncrease * 86_400_000) + (AddHour * 3_600_000) + (AddMinute * 60_000) + (AddSecond * 1_000)
         this.timeInMilliSecond += calculatedMilliSecondsToIncrease
         this.init()
         return this

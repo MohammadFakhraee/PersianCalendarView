@@ -90,10 +90,6 @@ class PersianDate : AbstractDate {
         private val monthLengthNotLeap = arrayOf(31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29)
         private val monthLengthLeap = arrayOf(31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30)
 
-        fun today() = PersianDate().apply {
-            this.hour = 0
-            this.minute = 0
-            this.second = 0
-        }
+        fun today() = PersianDate().apply { startDayUTC() }
     }
 }
