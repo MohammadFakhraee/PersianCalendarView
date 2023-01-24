@@ -73,6 +73,30 @@ class GregorianDateTest {
         assertThat(result).isEqualTo(intArrayOf(TEST_YEAR, TEST_MONTH, TEST_DAY))
     }
 
+    @Test
+    fun isLeap_fromSpecifiedYearOptionOne_returnsTrue() {
+        val result = predefinedFromTimeMillis.isLeap(TEST_LEAP_OPTION_ONE)
+        assertThat(result).isTrue()
+    }
+
+    @Test
+    fun isLeap_fromSpecifiedYearOptionTwo_returnsTrue() {
+        val result = predefinedFromTimeMillis.isLeap(TEST_LEAP_OPTION_TWO)
+        assertThat(result).isTrue()
+    }
+
+    @Test
+    fun isLeap_fromSpecifiedYearOptionThree_returnsFalse() {
+        val result = predefinedFromTimeMillis.isLeap(TEST_LEAP_OPTION_THREE)
+        assertThat(result).isFalse()
+    }
+
+    @Test
+    fun isLeap_fromSpecifiedYearOptionFour_returnsFalse() {
+        val result = predefinedFromTimeMillis.isLeap(TEST_LEAP_OPTION_FOUR)
+        assertThat(result).isFalse()
+    }
+
     companion object {
         private const val TEST_TIME_MILLI = 1_674_333_000_000 /* EQUALS TO: 01/22/2023 - 00:00:00 (Asia/Tehran) */
         private const val TEST_YEAR = 2023
@@ -81,5 +105,9 @@ class GregorianDateTest {
         private const val TEST_HOUR = 0
         private const val TEST_MINUTE = 0
         private const val TEST_SECOND = 0
+        private const val TEST_LEAP_OPTION_ONE = 1992 /* Leap year */
+        private const val TEST_LEAP_OPTION_TWO = 2000 /* Leap year */
+        private const val TEST_LEAP_OPTION_THREE = 1900 /* Not leap year */
+        private const val TEST_LEAP_OPTION_FOUR = 2023 /* Not leap year */
     }
 }
